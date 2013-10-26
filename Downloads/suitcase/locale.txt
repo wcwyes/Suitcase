@@ -1,0 +1,30 @@
+##########################
+# Template language file #
+##########################
+
+### Special strings ###
+
+### crafts.lua ###
+
+### init.lua ###
+Loaded! =
+someone =
+## 1: Player name
+Sorry, %s owns that spot. =
+
+### locked.lua ###
+## 1: Item description, 2: Owner name
+%s (owned by %s) =
+## 1: Player name, 2: Item description, 3: Owner name, 4: Position
+%s tried to access a %s belonging to %s at %s =
+## 1: Item description
+%s (Locked) =
+Locked suitcase =
+
+### suitcase.lua ###
+Suitcase =
+## 1: Player name, 2: position
+%s moves stuff in suitcase at %s =
+%s moves stuff to suitcase at %s =
+%s takes stuff from suitcase at %s =
+Not enough vertical space to place a suitcase! =
