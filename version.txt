@@ -1,4 +1,4 @@
-version Suitcase 0.0.1.4
+version Suitcase 0.0.2.1
 Coding by wcwyes
 textures by wcwyes and BadWolf
 special thanks to ElectricSolstice, rubenwardy, fairiestoy, Mossmanikin, LionsDen, RealBadAngel, kaeza, VanessaE
