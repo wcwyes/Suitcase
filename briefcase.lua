@@ -54,8 +54,7 @@ function use_handler (itemstack,user,pointed_thing)
                             local node_name = node.name
                             local drop_name = minetest.registered_nodes[node_name].drop
                             if drop_name then
-                                if string.match(drop_name, nil)  then return
-                                elseif string.match(drop_name, "suitcase:") then
+                                if string.match(drop_name, "suitcase:") then
                                     local bag_list = minetest.get_inventory({type='detached', name=user:get_player_name()..'_bags'})
                                         if bag_list then
                                             local bag1_inv = bag_list:get_stack('bag1', 1)
