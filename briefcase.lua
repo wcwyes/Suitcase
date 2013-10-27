@@ -53,36 +53,39 @@ function use_handler (itemstack,user,pointed_thing)
                             local node = minetest.env:get_node(pos)
                             local node_name = node.name
                             local drop_name = minetest.registered_nodes[node_name].drop
-                            if string.match(drop_name, "suitcase:") then
-                                local bag_list = minetest.get_inventory({type='detached', name=user:get_player_name()..'_bags'})
-                                    if bag_list then
-                                        local bag1_inv = bag_list:get_stack('bag1', 1)
+                            if drop_name then
+                                if string.match(drop_name, nil)  then return
+                                elseif string.match(drop_name, "suitcase:") then
+                                    local bag_list = minetest.get_inventory({type='detached', name=user:get_player_name()..'_bags'})
+                                        if bag_list then
+                                            local bag1_inv = bag_list:get_stack('bag1', 1)
 
-                                        if bag1_inv then
-                                            local player_inv = user:get_inventory()
-                                            if player_inv:is_empty('bag1') ==  true then
+                                            if bag1_inv then
                                                 local player_inv = user:get_inventory()
-                                                bag_list:add_item('bag1', {name=drop_name})
-                                                player_inv:add_item('bag1', {name=drop_name})
+                                                if player_inv:is_empty('bag1') ==  true then
+                                                    local player_inv = user:get_inventory()
+                                                    bag_list:add_item('bag1', {name=drop_name})
+                                                    player_inv:add_item('bag1', {name=drop_name})
     
-                                                local pt = pointed_thing
-                                                local bag1_stack = user:get_inventory():get_stack("bag1",1)
-                                                local meta =minetest.get_meta(pos)
-                                                local inv = meta:get_inventory()
-                                                local player_inv = user:get_inventory()
-  
-                                                player_inv:set_list("bag1contents", inv:get_list("main"))
-
-                                                minetest.env:remove_node(pos)
-                                                meta = minetest.env:get_meta(pos)
-			                        meta:from_table(meta0)
-			                        local item=itemstack:to_table()
-			                        local item_wear=tonumber((item["wear"]))
-			                        item_wear=item_wear+32 
-			                        if item_wear>65535 then itemstack:clear() return itemstack end
-			                        item["wear"]=tostring(item_wear)
-			                        itemstack:replace(item)
-                                                return
+                                                    local pt = pointed_thing
+                                                    local bag1_stack = user:get_inventory():get_stack("bag1",1)
+                                                    local meta =minetest.get_meta(pos)
+                                                    local inv = meta:get_inventory()
+                                                    local player_inv = user:get_inventory()
+    
+                                                    player_inv:set_list("bag1contents", inv:get_list("main"))
+ 
+                                                    minetest.env:remove_node(pos)
+                                                    meta = minetest.env:get_meta(pos)
+	    	                                    meta:from_table(meta0)
+                                                    local item=itemstack:to_table()
+                                                    local item_wear=tonumber((item["wear"]))
+                                                    item_wear=item_wear+32 
+                                                    if item_wear>65535 then itemstack:clear() return itemstack end
+                                                    item["wear"]=tostring(item_wear)
+                                                    itemstack:replace(item)
+                                                    return
+                                                end
                                             end
                                         end
                                     end
@@ -94,36 +97,38 @@ function use_handler (itemstack,user,pointed_thing)
                             local node = minetest.env:get_node(pos)
                             local node_name = node.name
                             local drop_name = minetest.registered_nodes[node_name].drop
-                            if string.match(drop_name, "suitcase:") then
-                                local bag_list = minetest.get_inventory({type='detached', name=user:get_player_name()..'_bags'})
-                                    if bag_list then
-                                        local bag2_inv = bag_list:get_stack('bag2', 1)
-
-                                        if bag2_inv then
-                                            local player_inv = user:get_inventory()
-                                            if player_inv:is_empty('bag2') ==  true then
-                                                local player_inv = user:get_inventory()
-                                                bag_list:add_item('bag2', {name=drop_name})
-                                                player_inv:add_item('bag2', {name=drop_name})
+                            if drop_name then
+                                if string.match(drop_name, "suitcase:") then
+                                    local bag_list = minetest.get_inventory({type='detached', name=user:get_player_name()..'_bags'})
+                                        if bag_list then
+                                            local bag2_inv = bag_list:get_stack('bag2', 1)
     
-                                                local pt = pointed_thing
-                                                local bag2_stack = user:get_inventory():get_stack("bag2",1)
-                                                local meta =minetest.get_meta(pos)
-                                                local inv = meta:get_inventory()
+                                            if bag2_inv then
                                                 local player_inv = user:get_inventory()
-
-                                                player_inv:set_list("bag2contents", inv:get_list("main"))
-
-                                                minetest.env:remove_node(pos)
-                                                meta = minetest.env:get_meta(pos)
-			                        meta:from_table(meta0)
-			                        local item=itemstack:to_table()
-			                        local item_wear=tonumber((item["wear"]))
-			                        item_wear=item_wear+32 
-			                        if item_wear>65535 then itemstack:clear() return itemstack end
-			                        item["wear"]=tostring(item_wear)
-			                        itemstack:replace(item)
-                                                return
+                                                if player_inv:is_empty('bag2') ==  true then
+                                                    local player_inv = user:get_inventory()
+                                                    bag_list:add_item('bag2', {name=drop_name})
+                                                    player_inv:add_item('bag2', {name=drop_name})
+        
+                                                    local pt = pointed_thing
+                                                    local bag2_stack = user:get_inventory():get_stack("bag2",1)
+                                                    local meta =minetest.get_meta(pos)
+                                                    local inv = meta:get_inventory()
+                                                    local player_inv = user:get_inventory()
+ 
+                                                    player_inv:set_list("bag2contents", inv:get_list("main"))
+ 
+                                                    minetest.env:remove_node(pos)
+                                                    meta = minetest.env:get_meta(pos)
+                                                    meta:from_table(meta0)
+                                                    local item=itemstack:to_table()
+                                                    local item_wear=tonumber((item["wear"]))
+                                                    item_wear=item_wear+32 
+                                                    if item_wear>65535 then itemstack:clear() return itemstack end
+                                                    item["wear"]=tostring(item_wear)
+                                                    itemstack:replace(item)
+                                                    return
+                                                end
                                             end
                                         end
                                     end
@@ -134,36 +139,38 @@ function use_handler (itemstack,user,pointed_thing)
                             local node = minetest.env:get_node(pos)
                             local node_name = node.name
                             local drop_name = minetest.registered_nodes[node_name].drop
-                            if string.match(drop_name, "suitcase:") then
-                                local bag_list = minetest.get_inventory({type='detached', name=user:get_player_name()..'_bags'})
-                                    if bag_list then
-                                        local bag3_inv = bag_list:get_stack('bag3', 1)
-
-                                        if bag3_inv then
-                                            local player_inv = user:get_inventory()
-                                            if player_inv:is_empty('bag3') ==  true then
-                                                local player_inv = user:get_inventory()
-                                                bag_list:add_item('bag3', {name=drop_name})
-                                                player_inv:add_item('bag3', {name=drop_name})
+                            if drop_name then
+                                if string.match(drop_name, "suitcase:") then
+                                    local bag_list = minetest.get_inventory({type='detached', name=user:get_player_name()..'_bags'})
+                                        if bag_list then
+                                            local bag3_inv = bag_list:get_stack('bag3', 1)
     
-                                                local pt = pointed_thing
-                                                local bag3_stack = user:get_inventory():get_stack("bag3",1)
-                                                local meta =minetest.get_meta(pos)
-                                                local inv = meta:get_inventory()
+                                            if bag3_inv then
                                                 local player_inv = user:get_inventory()
+                                                if player_inv:is_empty('bag3') ==  true then
+                                                    local player_inv = user:get_inventory()
+                                                    bag_list:add_item('bag3', {name=drop_name})
+                                                    player_inv:add_item('bag3', {name=drop_name})
+      
+                                                    local pt = pointed_thing
+                                                    local bag3_stack = user:get_inventory():get_stack("bag3",1)
+                                                    local meta =minetest.get_meta(pos)
+                                                    local inv = meta:get_inventory()
+                                                    local player_inv = user:get_inventory()
+ 
+                                                    player_inv:set_list("bag3contents", inv:get_list("main"))
 
-                                                player_inv:set_list("bag3contents", inv:get_list("main"))
-
-                                                minetest.env:remove_node(pos)
-                                                meta = minetest.env:get_meta(pos)
-			                        meta:from_table(meta0)
-			                        local item=itemstack:to_table()
-			                        local item_wear=tonumber((item["wear"]))
-			                        item_wear=item_wear+32 
-			                        if item_wear>65535 then itemstack:clear() return itemstack end
-			                        item["wear"]=tostring(item_wear)
-			                        itemstack:replace(item)
-                                                return
+                                                    minetest.env:remove_node(pos)
+                                                    meta = minetest.env:get_meta(pos)
+                                                    meta:from_table(meta0)
+                                                    local item=itemstack:to_table()
+                                                    local item_wear=tonumber((item["wear"]))
+                                                    item_wear=item_wear+32 
+                                                    if item_wear>65535 then itemstack:clear() return itemstack end
+                                                    item["wear"]=tostring(item_wear)
+                                                    itemstack:replace(item)
+                                                    return
+                                                end
                                             end
                                         end
                                     end
@@ -174,36 +181,38 @@ function use_handler (itemstack,user,pointed_thing)
                             local node = minetest.env:get_node(pos)
                             local node_name = node.name
                             local drop_name = minetest.registered_nodes[node_name].drop
-                            if string.match(drop_name, "suitcase:") then
-                                local bag_list = minetest.get_inventory({type='detached', name=user:get_player_name()..'_bags'})
-                                    if bag_list then
-                                        local bag4_inv = bag_list:get_stack('bag4', 1)
-
-                                        if bag4_inv then
-                                            local player_inv = user:get_inventory()
-                                            if player_inv:is_empty('bag4') ==  true then
+                            if drop_name then
+                                if string.match(drop_name, "suitcase:") then
+                                    local bag_list = minetest.get_inventory({type='detached', name=user:get_player_name()..'_bags'})
+                                        if bag_list then
+                                            local bag4_inv = bag_list:get_stack('bag4', 1)
+ 
+                                            if bag4_inv then
                                                 local player_inv = user:get_inventory()
-                                                bag_list:add_item('bag4', {name=drop_name})
-                                                player_inv:add_item('bag4', {name=drop_name})
+                                                if player_inv:is_empty('bag4') ==  true then
+                                                    local player_inv = user:get_inventory()
+                                                    bag_list:add_item('bag4', {name=drop_name})
+                                                    player_inv:add_item('bag4', {name=drop_name})
     
-                                                local pt = pointed_thing
-                                                local bag4_stack = user:get_inventory():get_stack("bag4",1)
-                                                local meta =minetest.get_meta(pos)
-                                                local inv = meta:get_inventory()
-                                                local player_inv = user:get_inventory()
+                                                    local pt = pointed_thing
+                                                    local bag4_stack = user:get_inventory():get_stack("bag4",1)
+                                                    local meta =minetest.get_meta(pos)
+                                                    local inv = meta:get_inventory()
+                                                    local player_inv = user:get_inventory()
 
-                                                player_inv:set_list("bag4contents", inv:get_list("main"))
+                                                    player_inv:set_list("bag4contents", inv:get_list("main"))
 
-                                                minetest.env:remove_node(pos)
-                                                meta = minetest.env:get_meta(pos)
-			                        meta:from_table(meta0)
-			                        local item=itemstack:to_table()
-			                        local item_wear=tonumber((item["wear"]))
-			                        item_wear=item_wear+32 
-			                        if item_wear>65535 then itemstack:clear() return itemstack end
-			                        item["wear"]=tostring(item_wear)
-			                        itemstack:replace(item)
-                                                return
+                                                    minetest.env:remove_node(pos)
+                                                    meta = minetest.env:get_meta(pos)
+                                                    meta:from_table(meta0)
+                                                    local item=itemstack:to_table()
+                                                    local item_wear=tonumber((item["wear"]))
+                                                    item_wear=item_wear+32 
+                                                    if item_wear>65535 then itemstack:clear() return itemstack end
+                                                    item["wear"]=tostring(item_wear)
+                                                    itemstack:replace(item)
+                                                    return
+                                                end
                                             end
                                         end
                                     end
