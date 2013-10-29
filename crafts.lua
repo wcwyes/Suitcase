@@ -7,7 +7,7 @@ else
 end
 
 minetest.register_craft({
-        output = "suitcase:suitcase",
+        output = "suitcase:general",
         recipe = {
 		{"default:mese_block", "default:wood", "default:mese_block", },
 		{"unified_inventory:bag_large", "unified_inventory:bag_large", "unified_inventory:bag_large", },
