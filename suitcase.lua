@@ -17,7 +17,7 @@ minetest.register_node('suitcase:general_node', {
         'suitcase_front.png',	
         'suitcase_front.png'
     },
-    inventory_image = "small_suitcase_inv.png",
+    inventory_image = "suitcase_inv.png",
     sunlight_propagates = false,
     paramtype = "light",
     paramtype2 = "facedir",
